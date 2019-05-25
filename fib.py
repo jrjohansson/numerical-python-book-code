@@ -1,13 +1,13 @@
 
-def fib(n): 
+def fib(N): 
     """ 
-    Return a list of the first n Fibonacci numbers.
+    Return a list of the first N Fibonacci numbers.
     """ 
     f0, f1 = 0, 1
-    f = [1] * n 
-    for m in range(1, n):
-        f[m] = f0 + f1
-        f0, f1 = f1, f[m]
+    f = [1] * N
+    for n in range(1, N):
+        f[n] = f0 + f1
+        f0, f1 = f1, f[n]
 
     return f
 
