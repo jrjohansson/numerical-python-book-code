@@ -1,20 +1,18 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # # Chapter 1: Computing with Python
 
 # Robert Johansson
 # 
-# Source code listings for [Numerical Python - A Practical Techniques Approach for Industry](http://www.apress.com/9781484205549) (ISBN 978-1-484205-54-9).
-# 
-# The source code listings can be downloaded from http://www.apress.com/9781484205549
+# Source code listings for [Numerical Python - Scientific Computing and Data Science Applications with Numpy, SciPy and Matplotlib](https://link.springer.com/book/10.1007/979-8-8688-0413-7) (ISBN 979-8-8688-0412-0).
 
 # ## Interpreter
 
 # In[1]:
 
 
-get_ipython().run_cell_magic('writefile', 'hello.py', 'print("Hello from Python!")')
+get_ipython().run_cell_magic('writefile', 'hello.py', 'print("Hello from Python!")\n')
 
 
 # In[2]:
@@ -30,6 +28,8 @@ get_ipython().system('python --version')
 
 
 # ## Input and output caching
+# 
+# (restart the kernel for the same output and cell numbers)
 
 # In[1]:
 
@@ -160,7 +160,7 @@ get_ipython().system('ls -l $file')
 # In[21]:
 
 
-get_ipython().run_cell_magic('writefile', 'fib.py', '\ndef fib(N): \n    """ \n    Return a list of the first N Fibonacci numbers.\n    """ \n    f0, f1 = 0, 1\n    f = [1] * N\n    for n in range(1, N):\n        f[n] = f0 + f1\n        f0, f1 = f1, f[n]\n\n    return f\n\nprint(fib(10))')
+get_ipython().run_cell_magic('writefile', 'fib.py', '\ndef fib(N): \n    """ \n    Return a list of the first N Fibonacci numbers.\n    """ \n    f0, f1 = 0, 1\n    f = [1] * N\n    for n in range(1, N):\n        f[n] = f0 + f1\n        f0, f1 = f1, f[n]\n\n    return f\n\nprint(fib(10))\n')
 
 
 # In[22]:
@@ -189,7 +189,7 @@ fib(6)
 fib(1.0)
 
 
-# In[27]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('debug', '')
@@ -197,25 +197,25 @@ get_ipython().run_line_magic('debug', '')
 
 # ## Timing and profiling code
 
-# In[28]:
+# In[27]:
 
 
 get_ipython().run_line_magic('timeit', 'fib(100)')
 
 
-# In[29]:
+# In[28]:
 
 
 result = get_ipython().run_line_magic('time', 'fib(100)')
 
 
-# In[30]:
+# In[29]:
 
 
 len(result)
 
 
-# In[31]:
+# In[30]:
 
 
 import numpy as np
@@ -229,7 +229,7 @@ def random_walker_max_distance(M, N):
     return np.max(np.abs(trajectories))
 
 
-# In[32]:
+# In[31]:
 
 
 get_ipython().run_line_magic('prun', 'random_walker_max_distance(400, 10000)')
@@ -237,19 +237,19 @@ get_ipython().run_line_magic('prun', 'random_walker_max_distance(400, 10000)')
 
 # ## Jupyter notebook
 
-# In[33]:
+# In[32]:
 
 
 from IPython.display import display, Image, HTML, Math
 
 
-# In[34]:
+# In[33]:
 
 
 Image(url='http://python.org/images/python-logo.gif')
 
 
-# In[35]:
+# In[34]:
 
 
 import scipy, numpy, matplotlib
@@ -259,19 +259,19 @@ rows = "\n".join([row % (module.__name__, module.__version__) for module in modu
 s = "<table> <tr><th>Library</th><th>Version</th> </tr> %s</table>" % rows
 
 
-# In[36]:
+# In[35]:
 
 
 s
 
 
-# In[37]:
+# In[36]:
 
 
 HTML(s)
 
 
-# In[38]:
+# In[37]:
 
 
 class HTMLDisplayer(object):
@@ -282,19 +282,19 @@ class HTMLDisplayer(object):
         return self.code
 
 
-# In[39]:
+# In[38]:
 
 
 HTMLDisplayer(s)
 
 
-# In[40]:
+# In[39]:
 
 
 Math(r'\hat{H} = -\frac{1}{2}\epsilon \hat{\sigma}_z-\frac{1}{2}\delta \hat{\sigma}_x')
 
 
-# In[41]:
+# In[40]:
 
 
 class QubitHamiltonian(object):
@@ -303,16 +303,17 @@ class QubitHamiltonian(object):
         self.delta = delta
 
     def _repr_latex_(self):
-        return "$\hat{H} = -%.2f\hat{\sigma}_z-%.2f\hat{\sigma}_x$" %             (self.epsilon/2, self.delta/2)
+        return "$\hat{H} = -%.2f\hat{\sigma}_z-%.2f\hat{\sigma}_x$" % \
+            (self.epsilon/2, self.delta/2)
 
 
-# In[42]:
+# In[41]:
 
 
 QubitHamiltonian(0.5, 0.25)
 
 
-# In[43]:
+# In[42]:
 
 
 import matplotlib.pyplot as plt
@@ -349,41 +350,47 @@ interact(f, mu=widgets.FloatSlider(min=1.0, max=20.0, step=1.0));
 
 # ## Jupyter nbconvert
 
-# In[46]:
+# In[2]:
 
 
-get_ipython().system('ipython nbconvert --to html ch01-code-listing.ipynb')
+get_ipython().system('jupyter nbconvert --to html ch01-code-listing.ipynb')
 
 
-# In[47]:
+# In[2]:
 
 
-get_ipython().system('ipython nbconvert --to pdf ch01-code-listing.ipynb')
+get_ipython().system('jupyter nbconvert --to pdf ch01-code-listing.ipynb')
 
 
-# In[48]:
+# In[8]:
 
 
-get_ipython().run_cell_magic('writefile', 'custom_template.tplx', "((*- extends 'article.tplx' -*))\n\n((* block title *)) \\title{Document title} ((* endblock title *))\n((* block author *)) \\author{Author's Name} ((* endblock author *))")
+get_ipython().run_cell_magic('writefile', 'custom_template.tplx', "((*- extends 'article.tplx' -*))\n\n((* block title *)) \\title{Document title} ((* endblock title *))\n((* block author *)) \\author{Author's Name} ((* endblock author *))\n")
 
 
-# In[49]:
+# In[ ]:
 
 
-get_ipython().system('ipython nbconvert ch01-code-listing.ipynb --to pdf --template custom_template.tplx')
+get_ipython().system('jupyter nbconvert ch01-code-listing.ipynb --to pdf --template custom_template.tplx')
 
 
-# In[50]:
+# In[11]:
 
 
-get_ipython().system('ipython nbconvert ch01-code-listing.ipynb --to python')
+get_ipython().system('jupyter nbconvert ch01-code-listing.ipynb --to python')
 
 
 # # Versions
 
-# In[51]:
+# In[1]:
 
 
 get_ipython().run_line_magic('reload_ext', 'version_information')
 get_ipython().run_line_magic('version_information', 'numpy')
+
+
+# In[ ]:
+
+
+
 
